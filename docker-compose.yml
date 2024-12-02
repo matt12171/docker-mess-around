@@ -20,6 +20,14 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432" # Expose PostgreSQL on port 5432
+  frontend:
+    build:
+      context: ./client
+    container_name: react-frontend
+    ports:
+      - "3001:3000"
+    depends_on:
+      - app
 
 volumes:
   postgres_data:
