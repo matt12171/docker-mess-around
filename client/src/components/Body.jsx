@@ -1,7 +1,13 @@
+import Charts from "./Charts";
+import Filters from "./Filters";
+import Map from "./Map";
+
 export default function Body() {
   return (
     <div>
-      <h1>Body</h1>
+      <Filters />
+      <Map />
+      <Charts />
     </div>
   );
 }
