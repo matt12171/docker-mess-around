@@ -1,7 +1,7 @@
 export default function Header() {
   return (
-    <div>
-      <h1>Header</h1>
+    <div id="header">
+      <h1>Wind Farm Dashboard</h1>
     </div>
   );
 }
