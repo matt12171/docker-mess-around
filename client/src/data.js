@@ -27,7 +27,7 @@ export const MOCK_TURBINE = [
     capacity: 9, // in MW
     location: "Location 3",
     coords: [51.407841, 1.881034],
-    status: "Active",
+    status: "Inactive",
     lastInspection: "2021-01-01",
     icon: turbineIcon,
   },

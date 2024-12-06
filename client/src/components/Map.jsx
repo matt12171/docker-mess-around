@@ -25,6 +25,8 @@ export default function Map() {
                 position={turbine.coords}
                 markerName={turbine.name}
                 icon={turbine.icon}
+                capacity={turbine.capacity}
+                status={turbine.status}
                 />
             );
         })}
