@@ -1,3 +1,5 @@
+import { turbineIcon } from "./Icon";
+
 export const MOCK_TURBINE = [
   {
     id: 1,
@@ -7,6 +9,7 @@ export const MOCK_TURBINE = [
     coords: [51.598221, 1.79009],
     status: "Active",
     lastInspection: "2021-01-01",
+    icon: turbineIcon,
   },
   {
     id: 2,
@@ -16,6 +19,7 @@ export const MOCK_TURBINE = [
     coords: [51.481402, 1.600944],
     status: "Active",
     lastInspection: "2021-01-01",
+    icon: turbineIcon,
   },
   {
     id: 3,
@@ -25,5 +29,6 @@ export const MOCK_TURBINE = [
     coords: [51.407841, 1.881034],
     status: "Active",
     lastInspection: "2021-01-01",
+    icon: turbineIcon,
   },
 ];

@@ -1,10 +1,11 @@
 import { Marker, Popup } from "react-leaflet";
 
-export default function MapMarker({ position, markerName }) {
+export default function MapMarker({ position, markerName, icon }) {
     // [x, y]
     // markerName
     return (
         <Marker
+        icon={icon}
         position={position}
         eventHandlers={{
           click: (e) => {
