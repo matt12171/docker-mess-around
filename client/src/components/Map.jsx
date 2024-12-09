@@ -3,14 +3,14 @@ import MapMarker from "./MapMarker";
 import { MOCK_TURBINE } from "../data";
 
 export default function Map() {
-    // Data to feed into map? 
+  // Data to feed into map?
 
   return (
     <div>
       <MapContainer
         id="map"
-        center={[51.505, -0.09]}
-        zoom={13}
+        center={[51.481402, 1.600944]}
+        zoom={10}
         scrollWheelZoom={true}
         style={{ height: "60vh", width: "100%" }}
       >
@@ -19,16 +19,16 @@ export default function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {MOCK_TURBINE.map((turbine) => {
-            return (
-                <MapMarker
-                key={turbine.id}
-                position={turbine.coords}
-                markerName={turbine.name}
-                icon={turbine.icon}
-                capacity={turbine.capacity}
-                status={turbine.status}
-                />
-            );
+          return (
+            <MapMarker
+              key={turbine.id}
+              position={turbine.coords}
+              markerName={turbine.name}
+              icon={turbine.icon}
+              capacity={turbine.capacity}
+              status={turbine.status}
+            />
+          );
         })}
       </MapContainer>
     </div>
