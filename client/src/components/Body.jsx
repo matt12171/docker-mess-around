@@ -10,7 +10,9 @@ export default function Body() {
       </section>
       <section id="body-right">
         <Map />
-        <Charts />
+        <div id="chart-wrapper">
+          <Charts />
+        </div>
       </section>
     </div>
   );
