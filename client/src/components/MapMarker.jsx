@@ -6,11 +6,13 @@ export default function MapMarker({
   icon,
   capacity,
   status,
+  setTurbineClickedCoords,
+  setTurbineIdClicked,
+  turbineId
 }) {
-  // [x, y]
-  // markerName
 
-  // TODO: fix popup not displaying information on first click
+  // TODO: Look into useRef to trigger popup programmatically
+
   return (
     <Marker
       icon={icon}
@@ -18,6 +20,8 @@ export default function MapMarker({
       eventHandlers={{
         click: (e) => {
           console.log("marker clicked", e);
+          setTurbineClickedCoords(position);
+          setTurbineIdClicked(turbineId);
         },
       }}
     >

@@ -1,10 +1,15 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import MapMarker from "./MapMarker";
 import { MOCK_TURBINE } from "../data";
 
-export default function Map() {
-  // Data to feed into map?
 
+const MapWrapper = ({ coords }) => {
+  const map = useMap();
+
+  map.flyTo(coords, map.getZoom());
+};
+
+export default function Map({ setTurbineIdClicked, setTurbineClickedCoords, turbineClickedCoords }) {
   return (
     <div>
       <MapContainer
@@ -22,14 +27,18 @@ export default function Map() {
           return (
             <MapMarker
               key={turbine.id}
+              turbineId={turbine.id}
               position={turbine.coords}
               markerName={turbine.name}
               icon={turbine.icon}
               capacity={turbine.capacity}
               status={turbine.status}
+              setTurbineClickedCoords={setTurbineClickedCoords}
+              setTurbineIdClicked={setTurbineIdClicked}
             />
           );
         })}
+        <MapWrapper coords={turbineClickedCoords} />
       </MapContainer>
     </div>
   );

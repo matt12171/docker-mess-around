@@ -51,6 +51,7 @@ html, body {
 }
 
 .chart-container {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
 }
