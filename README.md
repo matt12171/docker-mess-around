@@ -37,3 +37,13 @@ docker compose up --build
 ```
 
 and then the frontend should be able to call out to localhost:3000 (though be careful to set different exposed ports if you have backend and frontend services running).
+
+## Setting up and seeding local database
+
+```sh
+npm run setup-dbs
+```
+
+```sh
+npm run seed
+```

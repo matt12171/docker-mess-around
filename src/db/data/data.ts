@@ -1,7 +1,3 @@
-import { turbineIcon } from "./Icon";
-
-// Had to split coords into coords_lat and coords_long in DB
-
 export const MOCK_TURBINE = [
   {
     id: 1,
@@ -10,10 +6,10 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 8, // in MW
     location: "Location 1",
-    coords: [51.598221, 1.79009],
+    coords_lat: 51.598221,
+    coords_long: 1.79009,
     status: "Active",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 2,
@@ -22,10 +18,10 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 6, // in MW
     location: "Location 2",
-    coords: [51.481402, 1.600944],
+    coords_lat: 51.481402,
+    coords_long: 1.600944,
     status: "Active",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 3,
@@ -34,10 +30,10 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 9, // in MW
     location: "Location 3",
-    coords: [51.407841, 1.881034],
+    coords_lat: 51.407841,
+    coords_long: 1.881034,
     status: "Inactive",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 4,
@@ -46,10 +42,10 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 7, // in MW
     location: "Location 4",
-    coords: [51.381386, 1.9],
+    coords_lat: 51.381386,
+    coords_long: 1.9,
     status: "Active",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 5,
@@ -58,10 +54,10 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 5, // in MW
     location: "Location 5",
-    coords: [51.381386, 2],
+    coords_lat: 51.381386,
+    coords_long: 2,
     status: "Inactive",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 6,
@@ -70,21 +66,22 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 4, // in MW
     location: "Location 6",
-    coords: [51.381386, 2.1],
+    coords_lat: 51.381386,
+    coords_long: 2.1,
     status: "Active",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 7,
     name: "Mock Turbine 7",
     site: "A serious wind site",
+    siteId: 1,
     capacity: 3, // in MW
     location: "Location 7",
-    coords: [51.381386, 2.2],
+    coords_lat: 51.381386,
+    coords_long: 2.2,
     status: "Inactive",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 8,
@@ -93,10 +90,10 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 2, // in MW
     location: "Location 8",
-    coords: [51.381386, 2.3],
+    coords_lat: 51.381386,
+    coords_long: 2.3,
     status: "Active",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
   {
     id: 9,
@@ -105,10 +102,10 @@ export const MOCK_TURBINE = [
     siteId: 1,
     capacity: 1, // in MW
     location: "Location 9",
-    coords: [51.381386, 2.4],
+    coords_lat: 51.381386,
+    coords_long: 2.4,
     status: "Inactive",
     lastInspection: "2021-01-01",
-    icon: turbineIcon,
   },
 ];
 
@@ -120,6 +117,7 @@ export const MOCK_SITE = [
     turbineCount: 9,
     location: "UK",
     status: "Active",
-    coords: [51.381386, 1.9],
+    coords_lat: 51.381386,
+    coords_long: 1.9,
   },
 ];
