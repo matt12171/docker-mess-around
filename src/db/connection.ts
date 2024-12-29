@@ -2,7 +2,7 @@ import { Pool } from 'pg';
 
 const db = new Pool({
   user: 'me',
-  host: 'localhost',
+  host: 'db',
   database: 'windfarms',
   password: 'password',
   port: 5432,

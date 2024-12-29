@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 
+const cors = require('cors')
+
 const app = express();
+app.use(cors())
 const port = 3000;
 const db = require("./queries");
 

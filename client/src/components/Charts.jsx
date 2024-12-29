@@ -2,22 +2,22 @@ import Chart from "chart.js/auto";
 import BarChart from "./BarChart";
 import { CategoryScale } from "chart.js";
 import { useEffect, useState } from "react";
-import { MOCK_TURBINE } from "../data";
+// import { MOCK_TURBINE } from "../data";
 
 Chart.register(CategoryScale);
 
-export default function Charts({ turbineIdClicked, setTurbineIdClicked, setTurbineClickedCoords}) {
+export default function Charts({ turbineIdClicked, setTurbineIdClicked, setTurbineClickedCoords, fetchedTurbineData }) {
   const [chartData, setChartData] = useState({
-    labels: MOCK_TURBINE.map((data) => data.name),
+    labels: fetchedTurbineData.map((data) => data.name),
     datasets: [
       {
         label: "Turbine Capacity",
-        data: MOCK_TURBINE.map((data) => data.capacity),
+        data: fetchedTurbineData.map((data) => data.capacity),
         backgroundColor: "#7CB9E8",
         borderColor: "black",
         borderWidth: 2,
-        coords: MOCK_TURBINE.map((data) => data.coords),
-        id: MOCK_TURBINE.map((data) => data.id),
+        coords: fetchedTurbineData.map((data) => [data.coords_lat, data.coords_long]),
+        id: fetchedTurbineData.map((data) => data.id),
       },
     ],
   });
@@ -27,10 +27,10 @@ export default function Charts({ turbineIdClicked, setTurbineIdClicked, setTurbi
       ...prev,
       datasets: prev.datasets.map((dataset) => ({
         ...dataset,
-        borderColor: MOCK_TURBINE.map((data) =>
+        borderColor: fetchedTurbineData.map((data) =>
           data.id === turbineIdClicked ? "red" : "black"
         ),
-        borderWidth: MOCK_TURBINE.map((data) => (data.id === turbineIdClicked ? 4 : 2)),
+        borderWidth: fetchedTurbineData.map((data) => (data.id === turbineIdClicked ? 4 : 2)),
       })),
     }));
   }, [turbineIdClicked]);
