@@ -3,30 +3,39 @@ import Charts from "./Charts";
 import Filters from "./Filters";
 import Map from "./Map";
 import SiteInfoCard from "./SiteInfoCard";
-// import { MOCK_SITE } from "../data";
+import { MOCK_TURBINE } from "../data";
 import axios from "axios";
 
 const baseURL = "http://localhost:3000/";
+const isDevelopment = process.env.NODE_ENV === "development";
 
 export default function Body() {
-  const [ turbineIdClicked, setTurbineIdClicked ] = useState(null);
-  const [ turbineClickedCoords, setTurbineClickedCoords ] = useState([51.481402, 1.600944]);
-  const [ fetchedTurbineData, setFetchedTurbineData ] = useState(null);
-  const [ loading, setLoading ] = useState(true);
-
-
+  const [turbineIdClicked, setTurbineIdClicked] = useState(null);
+  const [turbineClickedCoords, setTurbineClickedCoords] = useState([
+    51.481402, 1.600944,
+  ]);
+  const [fetchedTurbineData, setFetchedTurbineData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(baseURL + "turbines")
-      .then((response) => {
-        console.log("Data fetched: ", response.data);
-        setFetchedTurbineData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching turbine data: ", error);
-        setLoading(false);
-      });
+    if (!isDevelopment) {
+      console.log("Using real data");
+      axios
+        .get(baseURL + "turbines")
+        .then((response) => {
+          console.log("Data fetched: ", response.data);
+          setFetchedTurbineData(response.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching turbine data: ", error);
+          setLoading(false);
+        });
+    } else {
+      console.log("Using mock data");
+      setFetchedTurbineData(MOCK_TURBINE);
+      setLoading(false);
+    }
   }, []);
 
   if (loading) {
@@ -43,9 +52,19 @@ export default function Body() {
         <Filters />
       </section>
       <section id="body-right">
-        <Map fetchedTurbineData={fetchedTurbineData} setTurbineIdClicked={setTurbineIdClicked} turbineClickedCoords={turbineClickedCoords} setTurbineClickedCoords={setTurbineClickedCoords} />
+        <Map
+          fetchedTurbineData={fetchedTurbineData}
+          setTurbineIdClicked={setTurbineIdClicked}
+          turbineClickedCoords={turbineClickedCoords}
+          setTurbineClickedCoords={setTurbineClickedCoords}
+        />
         <div id="chart-wrapper">
-          <Charts fetchedTurbineData={fetchedTurbineData} turbineIdClicked={turbineIdClicked} setTurbineClickedCoords={setTurbineClickedCoords} setTurbineIdClicked={setTurbineIdClicked}/>
+          <Charts
+            fetchedTurbineData={fetchedTurbineData}
+            turbineIdClicked={turbineIdClicked}
+            setTurbineClickedCoords={setTurbineClickedCoords}
+            setTurbineIdClicked={setTurbineIdClicked}
+          />
           {/* <SiteInfoCard name={MOCK_SITE[0].name} capacity={MOCK_SITE[0].capacity} location={MOCK_SITE[0].location} status={MOCK_SITE[0].status} turbineCount={MOCK_SITE[0].turbineCount} /> */}
         </div>
       </section>
