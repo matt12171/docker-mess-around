@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import MapMarker from "./MapMarker";
 // import { MOCK_TURBINE } from "../data";
+import { turbineIcon } from "../Icon";
 
 
 const MapWrapper = ({ coords }) => {
@@ -30,7 +31,7 @@ export default function Map({ setTurbineIdClicked, setTurbineClickedCoords, turb
               turbineId={turbine.id}
               position={[turbine.coords_lat, turbine.coords_long]}
               markerName={turbine.name}
-              icon={turbine.icon}
+              icon={turbineIcon}
               capacity={turbine.capacity}
               status={turbine.status}
               setTurbineClickedCoords={setTurbineClickedCoords}
