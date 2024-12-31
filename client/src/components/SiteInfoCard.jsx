@@ -1,11 +1,11 @@
-export default function SiteInfoCard({ name, capacity, location, status, turbineCount }) {
+export default function SiteInfoCard({ site }) {
     return (
         <div id="site-info-card">
-            <h2>{name}</h2>
-            <p>Capacity: {capacity} MW</p>
-            <p>Location: {location}</p>
-            <p>Status: {status}</p>
-            <p>Turbine Count: {turbineCount}</p>
+            <h2>{site.name}</h2>
+            <p>Capacity: {site[0].capacity} MW</p>
+            <p>Location: {site[0].location}</p>
+            <p>Status: {site[0].status}</p>
+            <p>Turbine Count: {site[0].turbineCount}</p>
         </div>
     )
 }

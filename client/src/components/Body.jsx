@@ -3,7 +3,7 @@ import Charts from "./Charts";
 import Filters from "./Filters";
 import Map from "./Map";
 import SiteInfoCard from "./SiteInfoCard";
-import { MOCK_TURBINE } from "../data";
+import { MOCK_TURBINE, MOCK_SITE } from "../data";
 import axios from "axios";
 
 const baseURL = "http://localhost:3000/";
@@ -15,6 +15,7 @@ export default function Body() {
     51.481402, 1.600944,
   ]);
   const [fetchedTurbineData, setFetchedTurbineData] = useState(null);
+  const [fetchedSiteData, setFetchedSiteData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,15 +26,28 @@ export default function Body() {
         .then((response) => {
           console.log("Data fetched: ", response.data);
           setFetchedTurbineData(response.data);
-          setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching turbine data: ", error);
           setLoading(false);
+        })
+        .then(() => {
+          axios
+            .get(baseURL + "sites")
+            .then((response) => {
+              console.log("Data fetched: ", response.data);
+              setFetchedSiteData(response.data);
+              setLoading(false);
+            })
+            .catch((error) => {
+              console.error("Error fetching site data: ", error);
+              setLoading(false);
+            });
         });
     } else {
       console.log("Using mock data");
       setFetchedTurbineData(MOCK_TURBINE);
+      setFetchedSiteData(MOCK_SITE);
       setLoading(false);
     }
   }, []);
@@ -65,7 +79,7 @@ export default function Body() {
             setTurbineClickedCoords={setTurbineClickedCoords}
             setTurbineIdClicked={setTurbineIdClicked}
           />
-          {/* <SiteInfoCard name={MOCK_SITE[0].name} capacity={MOCK_SITE[0].capacity} location={MOCK_SITE[0].location} status={MOCK_SITE[0].status} turbineCount={MOCK_SITE[0].turbineCount} /> */}
+          <SiteInfoCard site={fetchedSiteData} />
         </div>
       </section>
     </div>
