@@ -1,7 +1,9 @@
 import { Bar } from "react-chartjs-2";
 export default function BarChart({ chartData, setTurbineClickedCoords, setTurbineIdClicked }) {
+  console.log(chartData);
   return (
     <div className="chart-container">
+      <h2 id="turbine-capacity-title">Turbine Capacity</h2>
       <Bar
         data={chartData}
         options={{
@@ -25,10 +27,6 @@ export default function BarChart({ chartData, setTurbineClickedCoords, setTurbin
           },
           responsive: true,
           plugins: {
-            title: {
-              display: true,
-              text: "Turbine Capacity",
-            },
             legend: {
               display: false,
             },

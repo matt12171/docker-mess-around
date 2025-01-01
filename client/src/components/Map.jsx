@@ -12,7 +12,7 @@ const MapWrapper = ({ coords }) => {
 
 export default function Map({ setTurbineIdClicked, setTurbineClickedCoords, turbineClickedCoords, fetchedTurbineData }) {
   return (
-    <div>
+    <div id="map-wrapper">
       <MapContainer
         id="map"
         center={[51.481402, 1.600944]}

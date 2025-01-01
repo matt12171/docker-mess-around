@@ -5,9 +5,13 @@ import Map from "./Map";
 import SiteInfoCard from "./SiteInfoCard";
 import { MOCK_TURBINE, MOCK_SITE } from "../data";
 import axios from "axios";
+import SmallinfoCard from "./SmallinfoCard";
+import { calculateCurrentSitePowerCapacity, calculateMaxSitePowerCapacity, calculatePercentageOfActiveTurbines } from "../utils";
+
 
 const baseURL = "http://localhost:3000/";
 const isDevelopment = process.env.NODE_ENV === "development";
+
 
 export default function Body() {
   const [turbineIdClicked, setTurbineIdClicked] = useState(null);
@@ -80,6 +84,11 @@ export default function Body() {
             setTurbineIdClicked={setTurbineIdClicked}
           />
           <SiteInfoCard site={fetchedSiteData} />
+          <div id="card-wrapper">
+          <SmallinfoCard title='Current total power capacity' value={`${calculateCurrentSitePowerCapacity(fetchedTurbineData)} MW`} icon={<i className="fa-solid fa-bolt"></i>}/>
+          <SmallinfoCard title='Max power capacity' value={`${calculateMaxSitePowerCapacity(fetchedTurbineData)} MW`} icon={<i className="fa-solid fa-bolt"></i>}/>
+          <SmallinfoCard title='Active turbines' value={`${calculatePercentageOfActiveTurbines(fetchedTurbineData)}%`} icon={<i className="fa-solid fa-power-off"></i>}/>
+          </div>
         </div>
       </section>
     </div>

@@ -13,8 +13,7 @@ export default function Charts({ turbineIdClicked, setTurbineIdClicked, setTurbi
       {
         label: "Turbine Capacity",
         data: fetchedTurbineData.map((data) => data.capacity),
-        backgroundColor: "#7CB9E8",
-        borderColor: "black",
+        backgroundColor: "#4a5ecb",
         borderWidth: 2,
         coords: fetchedTurbineData.map((data) => [data.coords_lat, data.coords_long]),
         id: fetchedTurbineData.map((data) => data.id),
