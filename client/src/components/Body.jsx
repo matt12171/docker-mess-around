@@ -7,6 +7,7 @@ import { MOCK_TURBINE, MOCK_SITE } from "../data";
 import axios from "axios";
 import SmallinfoCard from "./SmallinfoCard";
 import { calculateCurrentSitePowerCapacity, calculateMaxSitePowerCapacity, calculatePercentageOfActiveTurbines } from "../utils";
+import Header from "./Header";
 
 
 const baseURL = "http://localhost:3000/";
@@ -70,6 +71,7 @@ export default function Body() {
         <Filters />
       </section>
       <section id="body-right">
+        <Header />
         <Map
           fetchedTurbineData={fetchedTurbineData}
           setTurbineIdClicked={setTurbineIdClicked}
