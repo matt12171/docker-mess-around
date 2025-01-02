@@ -1,13 +1,18 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Body from "./components/Body";
-import Header from "./components/Header";
+import Edit from "./pages/Edit";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <Body />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="edit" element={<Edit />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

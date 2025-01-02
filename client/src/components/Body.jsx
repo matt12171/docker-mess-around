@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import Charts from "./Charts";
-import Filters from "./Filters";
 import Map from "./Map";
 import SiteInfoCard from "./SiteInfoCard";
 import { MOCK_TURBINE, MOCK_SITE } from "../data";
 import axios from "axios";
 import SmallinfoCard from "./SmallinfoCard";
 import { calculateCurrentSitePowerCapacity, calculateMaxSitePowerCapacity, calculatePercentageOfActiveTurbines } from "../utils";
-import Header from "./Header";
 
 
 const baseURL = "http://localhost:3000/";
@@ -67,11 +65,8 @@ export default function Body() {
 
   return (
     <div id="body-main">
-      <section id="body-left">
-        <Filters />
-      </section>
+      
       <section id="body-right">
-        <Header />
         <Map
           fetchedTurbineData={fetchedTurbineData}
           setTurbineIdClicked={setTurbineIdClicked}
