@@ -10,6 +10,7 @@ const db = require("./queries");
 // Turbines
 app.get('/turbines', db.getTurbines)
 app.get('/turbines/:id', db.getTurbineById)
+app.post('/turbines', db.createTurbine)
 
 // Sites
 app.get('/sites', db.getSites)

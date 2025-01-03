@@ -25,7 +25,7 @@ const seed = () => {
     .then(() => {
       return db.query(`
         CREATE TABLE turbines (
-          id INT PRIMARY KEY,
+          id SERIAL PRIMARY KEY,
           name VARCHAR NOT NULL,
           siteId INT REFERENCES sites(id),
           capacity INT,

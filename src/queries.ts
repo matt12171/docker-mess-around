@@ -21,6 +21,21 @@ const getTurbineById = (request:any, response:any) => {
   });
 }
 
+const createTurbine = (request:any, response:any) => {
+  const { name, site_id, } = request
+  .body;
+
+  pool.query(
+    "INSERT INTO turbines (name, site_id) VALUES ($1, $2)",
+    [name, site_id],
+    (error:any, results:any) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send(`Turbine added with ID: ${results.insertId}`);
+    }
+  );
+
 // Site queries
 
 const getSites = (request:any, response:any) => {
