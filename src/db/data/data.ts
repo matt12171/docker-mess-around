@@ -1,6 +1,5 @@
 export const MOCK_TURBINE = [
   {
-    id: 1,
     name: "Mock Turbine 1",
     site: "A serious wind site",
     siteId: 1,
@@ -12,7 +11,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 2,
     name: "Mock Turbine 2",
     site: "A serious wind site",
     siteId: 1,
@@ -24,7 +22,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 3,
     name: "Mock Turbine 3",
     site: "A serious wind site",
     siteId: 1,
@@ -36,7 +33,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 4,
     name: "Mock Turbine 4",
     site: "A serious wind site",
     siteId: 1,
@@ -48,7 +44,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 5,
     name: "Mock Turbine 5",
     site: "A serious wind site",
     siteId: 1,
@@ -60,7 +55,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 6,
     name: "Mock Turbine 6",
     site: "A serious wind site",
     siteId: 1,
@@ -72,7 +66,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 7,
     name: "Mock Turbine 7",
     site: "A serious wind site",
     siteId: 1,
@@ -84,7 +77,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 8,
     name: "Mock Turbine 8",
     site: "A serious wind site",
     siteId: 1,
@@ -96,7 +88,6 @@ export const MOCK_TURBINE = [
     lastInspection: "2021-01-01",
   },
   {
-    id: 9,
     name: "Mock Turbine 9",
     site: "A serious wind site",
     siteId: 1,

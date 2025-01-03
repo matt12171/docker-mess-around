@@ -3,14 +3,16 @@ import express, { Request, Response } from "express";
 const cors = require('cors')
 
 const app = express();
-app.use(cors())
 const port = 3000;
 const db = require("./queries");
+
+app.use(cors())
+app.use(express.json());
 
 // Turbines
 app.get('/turbines', db.getTurbines)
 app.get('/turbines/:id', db.getTurbineById)
-app.post('/turbines', db.createTurbine)
+app.post('/turbine', db.postTurbine)
 
 // Sites
 app.get('/sites', db.getSites)

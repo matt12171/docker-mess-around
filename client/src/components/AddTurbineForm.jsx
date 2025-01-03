@@ -16,9 +16,7 @@ export default function AddTurbineForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(inputs);
-
-    axios.post('/turbine', inputs)
+    axios.post(baseURL + 'turbine', inputs)
       .then(function (response) {
         console.log(response);
       })
@@ -69,7 +67,7 @@ export default function AddTurbineForm() {
         Status:
         <select
           name="status"
-          value={inputs.status || ""}
+          value={inputs.status || "Active"}
           onChange={handleChange}
         >
           <option value="Active">Active</option>

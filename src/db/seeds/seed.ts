@@ -61,11 +61,10 @@ const seed = () => {
       const insertTurbinesQueryStr = format(
         `
         INSERT INTO turbines
-          (id, name, siteId, capacity, location, coords_lat, coords_long, status, lastInspection)
+          (name, siteId, capacity, location, coords_lat, coords_long, status, lastInspection)
         VALUES %L;
       `,
         MOCK_TURBINE.map((turbine:any) => [
-          turbine.id,
           turbine.name,
           turbine.siteId,
           turbine.capacity,
