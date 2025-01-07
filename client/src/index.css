@@ -147,3 +147,28 @@ h2 {
   align-items: center;
   font-size: 2em;
 }
+
+.add-turbine-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.add-turbine-form__label {
+  margin-bottom: 5px;
+}
+
+.required-field::after {
+  content: "*";
+  color: red;
+}
+
+.turbine-form-error-msg {
+  color: red;
+  font-size: 0.8em;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  max-width: fit-content;
+  margin-left: 5px;
+}

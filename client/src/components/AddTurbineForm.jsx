@@ -1,92 +1,157 @@
 import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import { MOCK_TURBINE } from "../data";
 
 const baseURL = "http://localhost:3000/";
 const isDevelopment = process.env.NODE_ENV === "development";
 
-export default function AddTurbineForm() {
-  const [inputs, setInputs] = useState({});
+function triggerToastAlert(type, message) {
+  toast[type](message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+}
 
+export default function AddTurbineForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
+  const onInvalid = () => {
+    triggerToastAlert("error", "Fix error(s) to continue");
+  };
 
-  const onSubmit = (data) => console.log(data);
-
-  // const onSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   axios.post(baseURL + 'turbine', inputs)
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
+  const onSubmit = (data) => {
+    if (isDevelopment) {
+      console.log(data);
+      MOCK_TURBINE.push({
+        id: MOCK_TURBINE.length + 1,
+        site: "A serious wind site",
+        siteId: 1,
+        location: "Location 1",
+        ...data,
+      });
+      triggerToastAlert("success", "Turbine added!");
+    } else {
+      console.log(data, "data");
+      axios
+        .post(baseURL + "turbine", data)
+        .then(function (response) {
+          triggerToastAlert("success", "Turbine added!");
+          console.log(response);
+        })
+        .catch(function (error) {
+          triggerToastAlert("error", "Error adding turbine");
+          console.log(error);
+        });
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
+    <form
+      className="add-turbine-form"
+      onSubmit={handleSubmit(onSubmit, onInvalid)}
+    >
+      <label className="add-turbine-form__label">
         Turbine name:
-        <input type="text" {...register("name", { required: "This is required" })} />
+        <input
+          type="text"
+          {...register("name", { required: "This is required" })}
+        />
+        {errors.name && (
+          <span className="turbine-form-error-msg">{errors.name.message}</span>
+        )}
       </label>
-      <label>
+      <label className="add-turbine-form__label">
         Turbine capacity? (in MW):
-        <input type="number" {...register("capacity", { required: "This is required", min: { value: 0, message: 'Value must be greater than 0'} })} />
+        <input
+          type="number"
+          {...register("capacity", {
+            required: "This is required",
+            min: { value: 0, message: "Value must be greater than 0" },
+          })}
+        />
+        {errors.capacity && (
+          <span className="turbine-form-error-msg">
+            {errors.capacity.message}
+          </span>
+        )}
       </label>
-      <label>
+      <label className="add-turbine-form__label">
         Coords latitude:
-        <input type="number" step="any" {...register("coords_lat", { required: "This is required" })} />
+        <input
+          type="number"
+          step="any"
+          {...register("coords_lat", { required: "This is required" })}
+        />
+        {errors.coords_lat && (
+          <span className="turbine-form-error-msg">
+            {errors.coords_lat.message}
+          </span>
+        )}
       </label>
-      <label>
+      <label className="add-turbine-form__label">
         Coords longitude:
-        <input type="number" step="any" {...register("coords_long", { required: "This is required" })} />
+        <input
+          type="number"
+          step="any"
+          {...register("coords_long", { required: "This is required" })}
+        />
+        {errors.coords_long && (
+          <span className="turbine-form-error-msg">
+            {errors.coords_long.message}
+          </span>
+        )}
       </label>
-      <label>
+      <label className="add-turbine-form__label">
         Last inspection:
         <input
           type="date"
           placeholder="lastInspection"
           {...register("lastInspection", { required: "This is required" })}
         />
+        {errors.lastInspection && (
+          <span className="turbine-form-error-msg">
+            {errors.lastInspection.message}
+          </span>
+        )}
       </label>
-      <label>
+      <label className="add-turbine-form__label">
         Status:
-        <select {...register("status", { required: true })}>
+        <select {...register("status", { required: "This is required" })}>
+          <option value="">Select...</option>
           <option value="Active">Active</option>
           <option value="Inactive">Inactive</option>
         </select>
+        {errors.status && (
+          <span className="turbine-form-error-msg">
+            {errors.status.message}
+          </span>
+        )}
       </label>
       <input type="submit" />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </form>
   );
 }
-
-// {
-//   id: 1,                                  // This is generated by the server
-//   name: "Mock Turbine 1",
-//   site: "A serious wind site",          // This is a foreign key
-//   siteId: 1,                           // This is a foreign key
-//   capacity: 8, // in MW
-//   location: "Location 1",               // This is generated by the server
-//   coords_lat: 51.598221,
-//   coords_long: 1.79009,
-//   status: "Active",
-//   lastInspection: "2021-01-01",
-// },
-
-// Dis is what we get when we submit the form
-// {
-//     "name": "sfgeg",
-//     "capacity": "22",
-//     "coords_lat": "2.22",
-//     "coords_long": "2.22",
-//     "lastInspection": "2025-01-08"
-// }
